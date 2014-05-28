@@ -5,7 +5,7 @@
 
 	<groupId>com.mywms</groupId>
 	<artifactId>myWMS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 
 	<name>myWMS</name>
 	<description>Warehouse Management System</description>

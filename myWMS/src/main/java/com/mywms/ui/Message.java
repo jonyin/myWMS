@@ -16,20 +16,30 @@ package com.mywms.ui;
 import java.util.Calendar;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.CalendarSerializer;
+import com.mywms.ui.jqgrid.JQGridColumn;
+import com.mywms.ui.jqgrid.JQGridModel;
 
 /**
  * @author Rob Winch
  */
-public class Message {
+public class Message extends JQGridModel {
 
+	@JQGridColumn(name="id", index="id", width=55, order=1)
 	private Long id;
 
 	@NotEmpty(message = "Message is required.")
+	@JQGridColumn(name="text", index="text", width=90, order=2)
 	private String text;
 
 	@NotEmpty(message = "Summary is required.")
+	@JQGridColumn(name="summary", index="summary", width=100, align="right", order=3)
 	private String summary;
 
+	@JQGridColumn(width=80, order=4)
 	private Calendar created = Calendar.getInstance();
 
 	public Long getId() {
@@ -40,6 +50,8 @@ public class Message {
 		this.id = id;
 	}
 
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+    @JsonSerialize(using=CalendarSerializer.class)
 	public Calendar getCreated() {
 		return this.created;
 	}
